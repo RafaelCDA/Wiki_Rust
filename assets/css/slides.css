@@ -1,0 +1,289 @@
+/* ============================================
+   ESTILOS MINIMALISTAS PARA SLIDES
+   ============================================ */
+
+/* Layout principal */
+.slides-minimal {
+  padding: 20px 0;
+  min-height: calc(100vh - 180px);
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.slides-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 0 20px;
+}
+
+.slides-header h1 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.slides-header p {
+  color: #7f8c8d;
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Container do Canva */
+.canva-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 30px;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  border: none;
+  position: relative;
+}
+
+.canva-frame {
+  width: 100%;
+  height: 75vh;
+  border: none;
+  display: block;
+  background: white;
+}
+
+/* Tela de carregamento */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 75vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 40px;
+}
+
+.loading-spinner {
+  font-size: 3.5rem;
+  margin-bottom: 25px;
+  animation: spin 1.5s linear infinite;
+}
+
+.loading-text {
+  font-size: 1.3rem;
+  text-align: center;
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Links de Ação */
+.slides-footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 0 20px;
+}
+
+.action-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.action-link {
+  background: #3498db;
+  color: white;
+  padding: 14px 30px;
+  border-radius: 10px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  min-width: 180px;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+}
+
+.action-link:hover {
+  background: #2980b9;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(52, 152, 219, 0.3);
+}
+
+.action-link:active {
+  transform: translateY(-1px);
+}
+
+.action-link.secondary {
+  background: #7f8c8d;
+  box-shadow: 0 4px 15px rgba(127, 140, 141, 0.2);
+}
+
+.action-link.secondary:hover {
+  background: #6c7b7d;
+  box-shadow: 0 8px 25px rgba(127, 140, 141, 0.3);
+}
+
+.action-link.pdf {
+  background: #e74c3c;
+  box-shadow: 0 4px 15px rgba(231, 76, 60, 0.2);
+}
+
+.action-link.pdf:hover {
+  background: #c0392b;
+  box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
+}
+
+/* Indicador de slide atual (opcional) */
+.slide-indicator {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  z-index: 10;
+  display: none; /* Oculto por padrão */
+}
+
+/* Mensagens de erro/status */
+.status-message {
+  text-align: center;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  border-radius: 10px;
+  background: #fff3cd;
+  border: 2px solid #ffeaa7;
+  color: #856404;
+}
+
+.status-message.error {
+  background: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+.status-message.success {
+  background: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+/* Responsivo */
+@media (max-width: 1024px) {
+  .canva-frame {
+    height: 65vh;
+  }
+
+  .slides-header h1 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .slides-minimal {
+    padding: 15px 0;
+  }
+
+  .canva-frame {
+    height: 55vh;
+  }
+
+  .slides-header h1 {
+    font-size: 2rem;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .slides-header p {
+    font-size: 1.1rem;
+  }
+
+  .action-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .action-link {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .canva-frame {
+    height: 45vh;
+  }
+
+  .slides-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .slides-header p {
+    font-size: 1rem;
+  }
+
+  .loading-spinner {
+    font-size: 2.5rem;
+  }
+
+  .loading-text {
+    font-size: 1.1rem;
+  }
+}
+
+/* Animações suaves */
+.fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-in {
+  animation: slideIn 0.6s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
