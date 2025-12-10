@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projeto - File Bundler</title>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/projeto.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css"
+    />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="main-header">
+      <div class="container">
+        <div class="logo">
+          <div class="logo-icon">🦀</div>
+          <h1>File Bundler</h1>
+        </div>
+        <nav class="main-nav">
+          <ul>
+            <li>
+              <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            </li>
+            <li>
+              <a href="rust.html"><i class="fas fa-code"></i> Rust</a>
+            </li>
+            <li>
+              <a href="projeto.html" class="active"
+                ><i class="fas fa-project-diagram"></i> Projeto</a
+              >
+            </li>
+            <li>
+              <a href="codigo.html"><i class="fas fa-terminal"></i> Código</a>
+            </li>
+            <li>
+              <a href="video.html"><i class="fas fa-video"></i> Vídeo</a>
+            </li>
+            <li>
+              <a href="slides.html"
+                ><i class="fas fa-presentation-screen"></i> Slides</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="projeto-main">
+      <div class="container">
+        <!-- Cabeçalho -->
+        <div class="projeto-header">
+          <h1>
+            <i class="fas fa-project-diagram"></i> File Bundler - O Projeto
+          </h1>
+          <p>
+            Uma ferramenta CLI de alta performance para empacotamento e
+            compressão de arquivos em Rust
+          </p>
+        </div>
+
+        <!-- Visão Geral -->
+        <div class="overview-section">
+          <div class="overview-card">
+            <div class="overview-icon">
+              <i class="fas fa-box-open"></i>
+            </div>
+            <div class="overview-content">
+              <h2>O que é o File Bundler?</h2>
+              <p>
+                O File Bundler é uma ferramenta de linha de comando desenvolvida
+                em Rust que permite empacotar múltiplos arquivos e diretórios em
+                um único arquivo compactado (<code>.bundle</code>), com suporte
+                a diferentes algoritmos de compressão.
+              </p>
+
+              <div class="key-features">
+                <div class="feature">
+                  <i class="fas fa-bolt"></i>
+                  <span>Alta Performance</span>
+                </div>
+                <div class="feature">
+                  <i class="fas fa-shield-alt"></i>
+                  <span>Segurança de Memória</span>
+                </div>
+                <div class="feature">
+                  <i class="fas fa-compress-arrows-alt"></i>
+                  <span>Compressão Eficiente</span>
+                </div>
+                <div class="feature">
+                  <i class="fas fa-terminal"></i>
+                  <span>CLI Simples</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Como Funciona -->
+        <div class="how-it-works">
+          <h2><i class="fas fa-cogs"></i> Como Funciona</h2>
+          <p class="section-desc">
+            O File Bundler utiliza um processo de três etapas para empacotar e
+            desempacotar arquivos de forma eficiente e segura.
+          </p>
+
+          <div class="workflow">
+            <!-- Etapa 1 -->
+            <div class="workflow-step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h3><i class="fas fa-folder-plus"></i> Agregação</h3>
+                <p>
+                  Coleta todos os arquivos e diretórios especificados, navegando
+                  recursivamente pelas pastas.
+                </p>
+                <ul>
+                  <li>Leitura eficiente de metadados</li>
+                  <li>Preservação da estrutura de diretórios</li>
+                  <li>Controle de offsets e posições</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Etapa 2 -->
+            <div class="workflow-step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h3><i class="fas fa-compress-arrows-alt"></i> Compressão</h3>
+                <p>
+                  Aplica compressão em tempo real usando LZ4 ou ZStandard, ou
+                  mantém os dados originais.
+                </p>
+                <ul>
+                  <li>Compressão por arquivo individual</li>
+                  <li>Suporte a múltiplos algoritmos</li>
+                  <li>Balanceamento entre velocidade e taxa</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Etapa 3 -->
+            <div class="workflow-step">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h3><i class="fas fa-archive"></i> Indexação</h3>
+                <p>
+                  Cria um manifesto (índice) com metadados de todos os arquivos
+                  e anexa ao final do bundle.
+                </p>
+                <ul>
+                  <li>Serialização binária com bincode</li>
+                  <li>Índice no formato footer</li>
+                  <li>Verificação de versão</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formato do Arquivo .bundle -->
+        <div class="file-format">
+          <h2>
+            <i class="fas fa-file-archive"></i> Formato do Arquivo .bundle
+          </h2>
+          <p class="section-desc">
+            Estrutura interna do arquivo gerado pela ferramenta.
+          </p>
+
+          <div class="format-diagram">
+            <div class="diagram-header">
+              <div class="diagram-label">Arquivo .bundle</div>
+            </div>
+
+            <div class="diagram-body">
+              <!-- Conteúdo dos arquivos -->
+              <div class="diagram-section">
+                <div class="section-header">
+                  <h4><i class="fas fa-file"></i> Dados dos Arquivos</h4>
+                  <span class="section-tag">Bloco Principal</span>
+                </div>
+                <div class="section-content">
+                  <div class="file-block">
+                    <div class="block-header">Arquivo 1</div>
+                    <div class="block-content">
+                      Conteúdo original ou comprimido
+                    </div>
+                  </div>
+                  <div class="file-block">
+                    <div class="block-header">Arquivo 2</div>
+                    <div class="block-content">
+                      Conteúdo original ou comprimido
+                    </div>
+                  </div>
+                  <div class="file-block">
+                    <div class="block-header">Arquivo N</div>
+                    <div class="block-content">
+                      Conteúdo original ou comprimido
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Índice/Metadata -->
+              <div class="diagram-section">
+                <div class="section-header">
+                  <h4><i class="fas fa-database"></i> Índice (Manifesto)</h4>
+                  <span class="section-tag">Metadados</span>
+                </div>
+                <div class="section-content">
+                  <div class="metadata-block">
+                    <div class="metadata-item">
+                      <strong>Path:</strong> "caminho/do/arquivo"
+                    </div>
+                    <div class="metadata-item">
+                      <strong>Offset:</strong> 0x0000
+                    </div>
+                    <div class="metadata-item">
+                      <strong>Size:</strong> 1024 bytes
+                    </div>
+                    <div class="metadata-item">
+                      <strong>Compression:</strong> LZ4
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Footer -->
+              <div class="diagram-section footer-section">
+                <div class="section-header">
+                  <h4><i class="fas fa-ruler"></i> Footer</h4>
+                  <span class="section-tag">8 bytes</span>
+                </div>
+                <div class="section-content">
+                  <div class="footer-block">
+                    <code>0x00 0x00 0x00 0x00 0x00 0x00 0x04 0x00</code>
+                    <div class="footer-desc">
+                      Tamanho do índice (little-endian)
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Módulos do Sistema -->
+        <div class="modules-section">
+          <h2><i class="fas fa-layer-group"></i> Módulos do Sistema</h2>
+          <p class="section-desc">
+            Arquitetura modular do projeto implementada em Rust.
+          </p>
+
+          <div class="modules-grid">
+            <!-- Módulo 1 -->
+            <div class="module-card">
+              <div class="module-icon main-module">
+                <i class="fas fa-play"></i>
+              </div>
+              <h3>main.rs</h3>
+              <p class="module-role">Ponto de Entrada</p>
+              <ul class="module-features">
+                <li>CLI com clap</li>
+                <li>Parsing de argumentos</li>
+                <li>Orquestração geral</li>
+                <li>Tratamento de erros</li>
+              </ul>
+            </div>
+
+            <!-- Módulo 2 -->
+            <div class="module-card">
+              <div class="module-icon archive-module">
+                <i class="fas fa-archive"></i>
+              </div>
+              <h3>archive.rs</h3>
+              <p class="module-role">Estruturas de Dados</p>
+              <ul class="module-features">
+                <li>CompressionMethod enum</li>
+                <li>FileEntry struct</li>
+                <li>ArchiveManifest</li>
+                <li>Serialização/Deserialização</li>
+              </ul>
+            </div>
+
+            <!-- Módulo 3 -->
+            <div class="module-card">
+              <div class="module-icon bundle-module">
+                <i class="fas fa-box"></i>
+              </div>
+              <h3>bundle.rs</h3>
+              <p class="module-role">Empacotamento</p>
+              <ul class="module-features">
+                <li>run_bundle()</li>
+                <li>Compressão LZ4/Zstd</li>
+                <li>WalkDir recursivo</li>
+                <li>Geração do índice</li>
+              </ul>
+            </div>
+
+            <!-- Módulo 4 -->
+            <div class="module-card">
+              <div class="module-icon extract-module">
+                <i class="fas fa-archive"></i>
+              </div>
+              <h3>extract.rs</h3>
+              <p class="module-role">Extração</p>
+              <ul class="module-features">
+                <li>run_extract()</li>
+                <li>Leitura do footer</li>
+                <li>Descompressão</li>
+                <li>Reconstrução de diretórios</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Algoritmos de Compressão -->
+        <div class="compression-section">
+          <h2><i class="fas fa-chart-line"></i> Algoritmos de Compressão</h2>
+          <p class="section-desc">
+            Comparativo dos métodos de compressão implementados.
+          </p>
+
+          <div class="compression-comparison">
+            <!-- LZ4 -->
+            <div class="algorithm-card">
+              <div class="algorithm-header lz4-bg">
+                <h3><i class="fas fa-tachometer-alt"></i> LZ4</h3>
+                <span class="algorithm-tag">Velocidade</span>
+              </div>
+              <div class="algorithm-stats">
+                <div class="stat">
+                  <span class="stat-label">Velocidade:</span>
+                  <span class="stat-value high">Muito Alta</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-label">Taxa:</span>
+                  <span class="stat-value medium">Moderada</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-label">Uso de CPU:</span>
+                  <span class="stat-value low">Baixo</span>
+                </div>
+              </div>
+              <div class="algorithm-desc">
+                <p>
+                  Ideal para aplicações que priorizam velocidade sobre taxa de
+                  compressão máxima. Perfeito para compressão em tempo real.
+                </p>
+              </div>
+            </div>
+
+            <!-- ZStandard -->
+            <div class="algorithm-card">
+              <div class="algorithm-header zstd-bg">
+                <h3><i class="fas fa-balance-scale"></i> ZStandard</h3>
+                <span class="algorithm-tag">Balanceado</span>
+              </div>
+              <div class="algorithm-stats">
+                <div class="stat">
+                  <span class="stat-label">Velocidade:</span>
+                  <span class="stat-value medium">Alta</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-label">Taxa:</span>
+                  <span class="stat-value high">Muito Alta</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-label">Uso de CPU:</span>
+                  <span class="stat-value medium">Moderado</span>
+                </div>
+              </div>
+              <div class="algorithm-desc">
+                <p>
+                  Oferece um excelente equilíbrio entre velocidade e taxa de
+                  compressão. Suporta múltiplos níveis de compressão.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Características Técnicas -->
+        <div class="tech-specs">
+          <h2><i class="fas fa-microchip"></i> Características Técnicas</h2>
+
+          <div class="specs-grid">
+            <div class="spec-card">
+              <div class="spec-icon">
+                <i class="fas fa-memory"></i>
+              </div>
+              <h3>Segurança de Memória</h3>
+              <p>
+                Garantias em tempo de compilação contra buffer overflows,
+                use-after-free e race conditions.
+              </p>
+            </div>
+
+            <div class="spec-card">
+              <div class="spec-icon">
+                <i class="fas fa-tachometer-alt"></i>
+              </div>
+              <h3>Alta Performance</h3>
+              <p>
+                Zero-cost abstractions e ausência de garbage collector garantem
+                desempenho próximo ao C/C++.
+              </p>
+            </div>
+
+            <div class="spec-card">
+              <div class="spec-icon">
+                <i class="fas fa-shipping-fast"></i>
+              </div>
+              <h3>Binário Portátil</h3>
+              <p>
+                Executável único estaticamente linkado, sem dependências
+                externas ou runtime necessário.
+              </p>
+            </div>
+
+            <div class="spec-card">
+              <div class="spec-icon">
+                <i class="fas fa-code-branch"></i>
+              </div>
+              <h3>Concorrência Segura</h3>
+              <p>
+                Modelo de ownership e borrowing que previne data races em tempo
+                de compilação.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Casos de Uso -->
+        <div class="use-cases">
+          <h2><i class="fas fa-rocket"></i> Casos de Uso</h2>
+
+          <div class="use-cases-grid">
+            <div class="use-case">
+              <div class="use-case-icon">
+                <i class="fas fa-server"></i>
+              </div>
+              <h3>Backup Simplificado</h3>
+              <p>
+                Empacotar logs, configurações ou dados de aplicação para backup
+                em um único arquivo.
+              </p>
+            </div>
+
+            <div class="use-case">
+              <div class="use-case-icon">
+                <i class="fas fa-file-export"></i>
+              </div>
+              <h3>Distribuição de Arquivos</h3>
+              <p>
+                Compactar múltiplos arquivos para transferência via rede ou
+                compartilhamento.
+              </p>
+            </div>
+
+            <div class="use-case">
+              <div class="use-case-icon">
+                <i class="fas fa-archive"></i>
+              </div>
+              <h3>Arquivamento</h3>
+              <p>
+                Comprimir projetos antigos ou dados históricos para economizar
+                espaço em disco.
+              </p>
+            </div>
+
+            <div class="use-case">
+              <div class="use-case-icon">
+                <i class="fas fa-code"></i>
+              </div>
+              <h3>Desenvolvimento</h3>
+              <p>
+                Empacotar assets de projeto, bibliotecas ou dados de teste para
+                versionamento.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Próximos Passos -->
+        <div class="next-steps">
+          <h2><i class="fas fa-road"></i> Próximos Passos</h2>
+
+          <div class="steps-timeline">
+            <div class="timeline-step">
+              <div class="step-marker">1</div>
+              <div class="step-content">
+                <h3>Criptografia</h3>
+                <p>
+                  Adicionar suporte a criptografia AES-256 para proteger dados
+                  sensíveis nos bundles.
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-step">
+              <div class="step-marker">2</div>
+              <div class="step-content">
+                <h3>Multithreading</h3>
+                <p>
+                  Implementar compressão paralela usando Rayon para melhorar
+                  performance em CPUs multicore.
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-step">
+              <div class="step-marker">3</div>
+              <div class="step-content">
+                <h3>Interface Gráfica</h3>
+                <p>
+                  Desenvolver interface web ou desktop usando Tauri ou similar.
+                </p>
+              </div>
+            </div>
+
+            <div class="timeline-step">
+              <div class="step-marker">4</div>
+              <div class="step-content">
+                <h3>Integração Cloud</h3>
+                <p>
+                  Suporte direto para upload/download de bundles em serviços
+                  como S3, Google Cloud Storage.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Links de Ação -->
+        <div class="projeto-footer">
+          <div class="action-links">
+            <a href="codigo.html" class="action-link">
+              <i class="fas fa-code"></i> Ver Implementação
+            </a>
+            <a href="video.html" class="action-link secondary">
+              <i class="fas fa-video"></i> Assistir Vídeo
+            </a>
+            <a href="slides.html" class="action-link secondary">
+              <i class="fas fa-presentation-screen"></i> Ver Slides
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <div class="logo-icon">🦀</div>
+            <h3>File Bundler</h3>
+            <p>Universidade de Brasília</p>
+            <p>Departamento de Ciência da Computação</p>
+          </div>
+          <div class="footer-links">
+            <h4>Documentação</h4>
+            <ul>
+              <li>
+                <a href="projeto.html"
+                  ><i class="fas fa-book"></i> Especificações</a
+                >
+              </li>
+              <li>
+                <a href="rust.html"><i class="fas fa-code"></i> Rust</a>
+              </li>
+              <li>
+                <a href="codigo.html"><i class="fas fa-terminal"></i> Código</a>
+              </li>
+              <li>
+                <a href="slides.html"
+                  ><i class="fas fa-presentation-screen"></i> Slides</a
+                >
+              </li>
+              <li>
+                <a href="video.html"><i class="fas fa-video"></i> Vídeo</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2024 File Bundler - Implementação em Rust</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="assets/js/projeto.js"></script>
+  </body>
+</html>

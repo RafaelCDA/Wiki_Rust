@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rust - File Bundler</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/rust.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">🦀</div>
+                <h1>File Bundler</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="rust.html" class="active"><i class="fas fa-code"></i> Rust</a></li>
+                    <li><a href="projeto.html"><i class="fas fa-project-diagram"></i> Projeto</a></li>
+                    <li><a href="codigo.html"><i class="fas fa-terminal"></i> Código</a></li>
+                    <li><a href="video.html"><i class="fas fa-video"></i> Vídeo</a></li>
+                    <li><a href="slides.html"><i class="fas fa-presentation-screen"></i> Slides</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="rust-main">
+        <div class="container">
+            <!-- Cabeçalho Hero -->
+            <div class="rust-hero">
+                <div class="hero-content">
+                    <h1><i class="fas fa-crab"></i> A Linguagem Rust</h1>
+                    <p class="hero-subtitle">Segurança, Concorrência e Performance sem Compromissos</p>
+                    <div class="rust-tagline">
+                        <span class="tagline-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Seguro</span>
+                        </span>
+                        <span class="tagline-item">
+                            <i class="fas fa-bolt"></i>
+                            <span>Rápido</span>
+                        </span>
+                        <span class="tagline-item">
+                            <i class="fas fa-users"></i>
+                            <span>Concorrente</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="hero-icon">
+                    <div class="rust-logo">🦀</div>
+                </div>
+            </div>
+
+            <!-- Introdução -->
+            <div class="intro-section">
+                <div class="intro-card">
+                    <h2><i class="fas fa-info-circle"></i> O que é Rust?</h2>
+                    <p>Rust é uma linguagem de programação de sistemas moderna, multi-paradigma, projetada pela Mozilla Research. Seu objetivo é oferecer o desempenho e controle de baixo nível de C e C++, mas com garantias de segurança de memória que são aplicadas em tempo de compilação.</p>
+                    <div class="intro-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">2010</div>
+                            <div class="stat-label">Lançamento Inicial</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">1.0</div>
+                            <div class="stat-label">Versão Estável (2015)</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">8+</div>
+                            <div class="stat-label">Anos de Estabilidade</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- História -->
+            <div class="history-section">
+                <h2><i class="fas fa-history"></i> História e Evolução</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2006</div>
+                        <div class="timeline-content">
+                            <h3><i class="fas fa-seedling"></i> Concepção</h3>
+                            <p>Graydon Hoare inicia o desenvolvimento do Rust como um projeto pessoal na Mozilla Research.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2010</div>
+                        <div class="timeline-content">
+                            <h3><i class="fas fa-rocket"></i> Anúncio Público</h3>
+                            <p>A Mozilla anuncia oficialmente o Rust como uma linguagem para desenvolvimento de sistemas.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2015</div>
+                        <div class="timeline-content">
+                            <h3><i class="fas fa-flag-checkered"></i> Rust 1.0</h3>
+                            <p>Primeira versão estável lançada, garantindo estabilidade e compatibilidade para produção.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2021</div>
+                        <div class="timeline-content">
+                            <h3><i class="fas fa-award"></i> Reconhecimento</h3>
+                            <p>Rust torna-se a linguagem "mais amada" pela comunidade Stack Overflow pelo 6º ano consecutivo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pilares do Rust -->
+            <div class="pillars-section">
+                <h2><i class="fas fa-columns"></i> Os Três Pilares do Rust</h2>
+                
+                <div class="pillars-grid">
+                    <!-- Pilar 1 -->
+                    <div class="pillar-card safety">
+                        <div class="pillar-header">
+                            <div class="pillar-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3>Segurança</h3>
+                        </div>
+                        <div class="pillar-content">
+                            <p>Garantias de segurança de memória em tempo de compilação, eliminando vulnerabilidades comuns sem garbage collector.</p>
+                            <ul class="pillar-features">
+                                <li><i class="fas fa-check"></i> Sem buffer overflows</li>
+                                <li><i class="fas fa-check"></i> Sem use-after-free</li>
+                                <li><i class="fas fa-check"></i> Sem data races</li>
+                                <li><i class="fas fa-check"></i> Sem null pointers</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Pilar 2 -->
+                    <div class="pillar-card performance">
+                        <div class="pillar-header">
+                            <div class="pillar-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <h3>Performance</h3>
+                        </div>
+                        <div class="pillar-content">
+                            <p>Desempenho comparável a C/C++ com otimizações agressivas e abstrações de custo zero.</p>
+                            <ul class="pillar-features">
+                                <li><i class="fas fa-check"></i> Zero-cost abstractions</li>
+                                <li><i class="fas fa-check"></i> Sem garbage collector</li>
+                                <li><i class="fas fa-check"></i> Controle de memória fino</li>
+                                <li><i class="fas fa-check"></i> Otimizações agressivas</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Pilar 3 -->
+                    <div class="pillar-card concurrency">
+                        <div class="pillar-header">
+                            <div class="pillar-icon">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <h3>Concorrência</h3>
+                        </div>
+                        <div class="pillar-content">
+                            <p>Modelo de ownership que previne data races, permitindo programação concorrente segura por design.</p>
+                            <ul class="pillar-features">
+                                <li><i class="fas fa-check"></i> Fearless concurrency</li>
+                                <li><i class="fas fa-check"></i> Sem race conditions</li>
+                                <li><i class="fas fa-check"></i> Threads seguras</li>
+                                <li><i class="fas fa-check"></i> Async/await nativo</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparação Rust vs C/C++ -->
+            <div class="comparison-section">
+                <h2><i class="fas fa-balance-scale"></i> Rust vs C/C++</h2>
+                <p class="section-subtitle">Uma comparação detalhada das características principais</p>
+                
+                <div class="comparison-table">
+                    <div class="table-header">
+                        <div class="table-category">Característica</div>
+                        <div class="table-rust">
+                            <div class="lang-logo">🦀</div>
+                            <div class="lang-name">Rust</div>
+                        </div>
+                        <div class="table-cpp">
+                            <div class="lang-logo">C++</div>
+                            <div class="lang-name">C/C++</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Linha 1 -->
+                    <div class="table-row">
+                        <div class="row-category">
+                            <i class="fas fa-memory"></i>
+                            <span>Segurança de Memória</span>
+                        </div>
+                        <div class="row-rust">
+                            <span class="feature-good">✅ Em tempo de compilação</span>
+                            <div class="feature-desc">Garantias estritas pelo compilador</div>
+                        </div>
+                        <div class="row-cpp">
+                            <span class="feature-bad">⚠️ Manual/ferramentas externas</span>
+                            <div class="feature-desc">Responsabilidade do programador</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Linha 2 -->
+                    <div class="table-row">
+                        <div class="row-category">
+                            <i class="fas fa-trash"></i>
+                            <span>Gerenciamento de Memória</span>
+                        </div>
+                        <div class="row-rust">
+                            <span class="feature-good">✅ Ownership system</span>
+                            <div class="feature-desc">RAII avançado, sem GC</div>
+                        </div>
+                        <div class="row-cpp">
+                            <span class="feature-ok">✅ RAII/manual</span>
+                            <div class="feature-desc">Gerenciamento manual ou smart pointers</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Linha 3 -->
+                    <div class="table-row">
+                        <div class="row-category">
+                            <i class="fas fa-users"></i>
+                            <span>Concorrência</span>
+                        </div>
+                        <div class="row-rust">
+                            <span class="feature-good">✅ Segura por design</span>
+                            <div class="feature-desc">Sem data races garantido</div>
+                        </div>
+                        <div class="row-cpp">
+                            <span class="feature-bad">⚠️ Complexa e propensa a erros</span>
+                            <div class="feature-desc">Race conditions comuns</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Linha 4 -->
+                    <div class="table-row">
+                        <div class="row-category">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Performance</span>
+                        </div>
+                        <div class="row-rust">
+                            <span class="feature-good">✅ Igual a C++</span>
+                            <div class="feature-desc">Zero-cost abstractions</div>
+                        </div>
+                        <div class="row-cpp">
+                            <span class="feature-good">✅ Excelente</span>
+                            <div class="feature-desc">Controle total de hardware</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Linha 5 -->
+                    <div class="table-row">
+                        <div class="row-category">
+                            <i class="fas fa-tools"></i>
+                            <span>Ferramental</span>
+                        </div>
+                        <div class="row-rust">
+                            <span class="feature-good">✅ Integrado e moderno</span>
+                            <div class="feature-desc">Cargo, rustfmt, clippy</div>
+                        </div>
+                        <div class="row-cpp">
+                            <span class="feature-ok">✅ Fragmentado</span>
+                            <div class="feature-desc">Make, CMake, Conan, etc.</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Linha 6 -->
+                    <div class="table-row">
+                        <div class="row-category">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Curva de Aprendizado</span>
+                        </div>
+                        <div class="row-rust">
+                            <span class="feature-bad">⚠️ Íngreme</span>
+                            <div class="feature-desc">Conceitos novos (ownership)</div>
+                        </div>
+                        <div class="row-cpp">
+                            <span class="feature-ok">✅ Gradual mas longa</span>
+                            <div class="feature-desc">Muitos recursos a dominar</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modelo de Ownership -->
+            <div class="ownership-section">
+                <h2><i class="fas fa-key"></i> Modelo de Ownership</h2>
+                <p class="section-subtitle">O sistema de propriedade que torna o Rust único</p>
+                
+                <div class="ownership-diagram">
+                    <div class="diagram-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3><i class="fas fa-user"></i> Cada valor tem um dono</h3>
+                            <p>Em Rust, cada pedaço de memória tem exatamente um "dono" responsável por sua liberação.</p>
+                            <div class="code-example">
+                                <pre><code class="language-rust">
+let s = String::from("hello");  // s é o dono da String
+                                </code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="diagram-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3><i class="fas fa-exchange-alt"></i> Transferência de ownership</h3>
+                            <p>Quando um valor é atribuído a outra variável, o ownership é transferido.</p>
+                            <div class="code-example">
+                                <pre><code class="language-rust">
+let s1 = String::from("hello");
+let s2 = s1;  // s1 perde ownership, s2 agora é o dono
+// println!("{}", s1);  // ERRO: s1 não pode mais ser usado
+                                </code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="diagram-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3><i class="fas fa-handshake"></i> Borrowing (empréstimo)</h3>
+                            <p>Permite referenciar um valor sem tomar ownership, com regras estritas de empréstimo.</p>
+                            <div class="code-example">
+                                <pre><code class="language-rust">
+fn main() {
+    let s = String::from("hello");
+    let len = calculate_length(&s);  // &s cria uma referência
+    println!("{} tem tamanho {}", s, len);
+}
+
+fn calculate_length(s: &String) -> usize {
+    s.len()
+}  // s sai do escopo, mas nada é liberado
+                                </code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ecossistema Rust -->
+            <div class="ecosystem-section">
+                <h2><i class="fas fa-leaf"></i> Ecossistema Rust</h2>
+                
+                <div class="ecosystem-grid">
+                    <!-- Cargo -->
+                    <div class="ecosystem-card">
+                        <div class="ecosystem-icon cargo">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <h3>Cargo</h3>
+                        <p class="ecosystem-role">Gerenciador de Pacotes e Build System</p>
+                        <div class="ecosystem-features">
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>Gerenciamento de dependências</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>Compilação incremental</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>Testes integrados</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>Publicação em crates.io</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Rustup -->
+                    <div class="ecosystem-card">
+                        <div class="ecosystem-icon rustup">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3>Rustup</h3>
+                        <p class="ecosystem-role">Gerenciador de Versões do Rust</p>
+                        <div class="ecosystem-features">
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>Instalação multiplataforma</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>Múltiplas toolchains</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>Atualizações automáticas</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>Componentes opcionais</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Crates.io -->
+                    <div class="ecosystem-card">
+                        <div class="ecosystem-icon crates">
+                            <i class="fas fa-box-open"></i>
+                        </div>
+                        <h3>crates.io</h3>
+                        <p class="ecosystem-role">Repositório de Pacotes</p>
+                        <div class="ecosystem-features">
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>100.000+ crates</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>Semântica de versão</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>Documentação automática</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>Estatísticas de uso</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Ferramentas -->
+                    <div class="ecosystem-card">
+                        <div class="ecosystem-icon tools">
+                            <i class="fas fa-wrench"></i>
+                        </div>
+                        <h3>Ferramentas</h3>
+                        <p class="ecosystem-role">Suporte ao Desenvolvimento</p>
+                        <div class="ecosystem-features">
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>rustfmt (formatação)</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>clippy (linter)</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>rust-analyzer (LSP)</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>cargo audit (segurança)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Por que Rust para este projeto? -->
+            <div class="why-rust-section">
+                <h2><i class="fas fa-question-circle"></i> Por que Rust para o File Bundler?</h2>
+                
+                <div class="reasons-grid">
+                    <div class="reason-card">
+                        <div class="reason-icon">
+                            <i class="fas fa-hdd"></i>
+                        </div>
+                        <div class="reason-content">
+                            <h3>Controle de I/O de Baixo Nível</h3>
+                            <p>Rust oferece controle granular sobre operações de arquivos e memória, essencial para manipulação direta de bytes no sistema de arquivos.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="reason-card">
+                        <div class="reason-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <div class="reason-content">
+                            <h3>Performance Crítica</h3>
+                            <p>Ausência de garbage collector elimina pausas imprevisíveis durante operações de compressão de grandes volumes de dados.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="reason-card">
+                        <div class="reason-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="reason-content">
+                            <h3>Confiabilidade de Dados</h3>
+                            <p>Garantias de segurança de memória previnem corrupção de arquivos durante operações de empacotamento e descompressão.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="reason-card">
+                        <div class="reason-icon">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <div class="reason-content">
+                            <h3>Binário Único e Portátil</h3>
+                            <p>Compilador gera executável estático sem dependências externas, simplificando distribuição e execução.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estatísticas e Adoção -->
+            <div class="stats-section">
+                <h2><i class="fas fa-chart-line"></i> Adoção e Comunidade</h2>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">#1</div>
+                        <div class="stat-label">Linguagem Mais Amada</div>
+                        <div class="stat-desc">Stack Overflow Survey (2016-2023)</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-value">100K+</div>
+                        <div class="stat-label">Pacotes no crates.io</div>
+                        <div class="stat-desc">Ecossistema ativo e crescente</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-value">2.8M</div>
+                        <div class="stat-label">Desenvolvedores</div>
+                        <div class="stat-desc">Comunidade global (2023)</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-value">100+</div>
+                        <div class="stat-label">Empresas Adotando</div>
+                        <div class="stat-desc">Microsoft, Google, Amazon, Facebook</div>
+                    </div>
+                </div>
+                
+                <div class="adoption-logos">
+                    <div class="logo-item">
+                        <i class="fab fa-microsoft"></i>
+                        <span>Microsoft</span>
+                    </div>
+                    <div class="logo-item">
+                        <i class="fab fa-google"></i>
+                        <span>Google</span>
+                    </div>
+                    <div class="logo-item">
+                        <i class="fab fa-amazon"></i>
+                        <span>Amazon</span>
+                    </div>
+                    <div class="logo-item">
+                        <i class="fab fa-meta"></i>
+                        <span>Meta</span>
+                    </div>
+                    <div class="logo-item">
+                        <i class="fab fa-dropbox"></i>
+                        <span>Dropbox</span>
+                    </div>
+                    <div class="logo-item">
+                        <i class="fab fa-discord"></i>
+                        <span>Discord</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemplo de Código Rust -->
+            <div class="code-showcase">
+                <h2><i class="fas fa-code"></i> Exemplo de Código Rust</h2>
+                
+                <div class="showcase-container">
+                    <div class="showcase-explanation">
+                        <h3><i class="fas fa-lightbulb"></i> Segurança em Ação</h3>
+                        <p>Este exemplo demonstra como o sistema de ownership do Rust previne erros comuns em tempo de compilação:</p>
+                        
+                        <div class="explanation-points">
+                            <div class="point">
+                                <div class="point-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="point-content">
+                                    <strong>Compilação com Erro:</strong> O compilador detecta o use-after-free
+                                </div>
+                            </div>
+                            <div class="point">
+                                <div class="point-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="point-content">
+                                    <strong>Segurança Garantida:</strong> Nenhum runtime error possível
+                                </div>
+                            </div>
+                            <div class="point">
+                                <div class="point-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div class="point-content">
+                                    <strong>Feedback Rápido:</strong> Mensagens de erro detalhadas
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="showcase-code">
+                        <div class="code-tabs">
+                            <button class="code-tab active" data-tab="error">Código com Erro</button>
+                            <button class="code-tab" data-tab="correct">Código Correto</button>
+                        </div>
+                        
+                        <div class="code-content">
+                            <div class="code-example active" id="error-code">
+                                <pre><code class="language-rust">
+fn main() {
+    let text = String::from("Hello, Rust!");
+    let reference = &text;
+    
+    drop(text);  // Libera a memória
+    
+    // ERRO EM TEMPO DE COMPILAÇÃO:
+    // Não podemos usar 'reference' depois que 'text' foi liberado
+    println!("{}", reference);
+}
+                                </code></pre>
+                                <div class="code-message error">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <span>Erro de compilação: borrow of moved value</span>
+                                </div>
+                            </div>
+                            
+                            <div class="code-example" id="correct-code">
+                                <pre><code class="language-rust">
+fn main() {
+    let text = String::from("Hello, Rust!");
+    let reference = &text;
+    
+    // Usamos a referência ANTES de liberar
+    println!("{}", reference);
+    
+    // Agora podemos liberar a memória
+    drop(text);
+}
+                                </code></pre>
+                                <div class="code-message success">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Compilação bem-sucedida</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recursos e Links -->
+            <div class="resources-section">
+                <h2><i class="fas fa-external-link-alt"></i> Recursos para Aprender Rust</h2>
+                
+                <div class="resources-grid">
+                    <a href="https://rust-lang.org/learn" class="resource-card" target="_blank">
+                        <div class="resource-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Documentação Oficial</h3>
+                        <p>Livro oficial, rust by example, e referência da linguagem.</p>
+                    </a>
+                    
+                    <a href="https://doc.rust-lang.org/std/" class="resource-card" target="_blank">
+                        <div class="resource-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3>Standard Library</h3>
+                        <p>Documentação completa da biblioteca padrão do Rust.</p>
+                    </a>
+                    
+                    <a href="https://crates.io" class="resource-card" target="_blank">
+                        <div class="resource-icon">
+                            <i class="fas fa-box-open"></i>
+                        </div>
+                        <h3>crates.io</h3>
+                        <p>Repositório de pacotes da comunidade Rust.</p>
+                    </a>
+                    
+                    <a href="https://github.com/rust-unofficial/awesome-rust" class="resource-card" target="_blank">
+                        <div class="resource-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>Awesome Rust</h3>
+                        <p>Lista curada de bibliotecas e recursos excelentes.</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Links de Navegação -->
+            <div class="rust-footer">
+                <div class="nav-links">
+                    <a href="projeto.html" class="nav-link">
+                        <i class="fas fa-arrow-left"></i> Voltar para Projeto
+                    </a>
+                    <a href="codigo.html" class="nav-link primary">
+                        Ver Implementação em Rust
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <div class="logo-icon">🦀</div>
+            <h3>File Bundler</h3>
+            <p>Universidade de Brasília</p>
+            <p>Departamento de Ciência da Computação</p>
+          </div>
+          <div class="footer-links">
+            <h4>Documentação</h4>
+            <ul>
+              <li>
+                <a href="projeto.html"
+                  ><i class="fas fa-book"></i> Especificações</a
+                >
+              </li>
+              <li>
+                <a href="rust.html"><i class="fas fa-code"></i> Rust</a>
+              </li>
+              <li>
+                <a href="codigo.html"><i class="fas fa-terminal"></i> Código</a>
+              </li>
+              <li>
+                <a href="slides.html"
+                  ><i class="fas fa-presentation-screen"></i> Slides</a
+                >
+              </li>
+              <li>
+                <a href="video.html"><i class="fas fa-video"></i> Vídeo</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2024 File Bundler - Implementação em Rust</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/rust.min.js"></script>
+    <script src="assets/js/rust.js"></script>
+</body>
+</html>

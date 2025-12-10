@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Código - File Bundler</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/codigo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">🦀</div>
+                <h1>File Bundler</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="rust.html"><i class="fas fa-code"></i> Rust</a></li>
+                    <li><a href="projeto.html"><i class="fas fa-project-diagram"></i> Projeto</a></li>
+                    <li><a href="codigo.html" class="active"><i class="fas fa-terminal"></i> Código</a></li>
+                    <li><a href="video.html"><i class="fas fa-video"></i> Vídeo</a></li>
+                    <li><a href="slides.html"><i class="fas fa-presentation-screen"></i> Slides</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="codigo-minimal">
+        <div class="container">
+            <!-- Cabeçalho Simples -->
+            <div class="codigo-header">
+                <h1><i class="fas fa-code"></i> Estrutura do Código</h1>
+                <p>Organização e implementação do projeto em Rust</p>
+            </div>
+
+            <!-- Container Principal -->
+            <div class="codigo-container">
+                <!-- Estrutura do Projeto -->
+                <div class="project-structure">
+                    <h2><i class="fas fa-folder-tree"></i> Estrutura do Projeto</h2>
+                    
+                    <div class="structure-tree">
+                        <div class="tree-item root">
+                            <i class="fas fa-folder-open"></i>
+                            <span>gerenciador-cli/</span>
+                        </div>
+                        
+                        <div class="tree-branch">
+                            <!-- Arquivos raiz -->
+                            <div class="tree-item">
+                                <i class="fas fa-file"></i>
+                                <span>Cargo.toml</span>
+                            </div>
+                            <div class="tree-item">
+                                <i class="fas fa-file"></i>
+                                <span>Cargo.lock</span>
+                            </div>
+                            <div class="tree-item">
+                                <i class="fas fa-file"></i>
+                                <span>README.md</span>
+                            </div>
+                            <div class="tree-item">
+                                <i class="fas fa-file"></i>
+                                <span>COMANDOS.txt</span>
+                            </div>
+                            <div class="tree-item">
+                                <i class="fas fa-file-archive"></i>
+                                <span>meu_arquivo.bundle</span>
+                            </div>
+                            
+                            <!-- Pasta src -->
+                            <div class="tree-item folder">
+                                <i class="fas fa-folder"></i>
+                                <span>src/</span>
+                            </div>
+                            <div class="tree-branch sub-branch">
+                                <div class="tree-item">
+                                    <i class="fas fa-file-code"></i>
+                                    <span>main.rs</span>
+                                </div>
+                                <div class="tree-item">
+                                    <i class="fas fa-file-code"></i>
+                                    <span>archive.rs</span>
+                                </div>
+                                <div class="tree-item">
+                                    <i class="fas fa-file-code"></i>
+                                    <span>bundle.rs</span>
+                                </div>
+                                <div class="tree-item">
+                                    <i class="fas fa-file-code"></i>
+                                    <span>extract.rs</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Pasta teste_bundle -->
+                            <div class="tree-item folder">
+                                <i class="fas fa-folder"></i>
+                                <span>teste_bundle/</span>
+                            </div>
+                            <div class="tree-branch sub-branch">
+                                <div class="tree-item">
+                                    <i class="fas fa-file"></i>
+                                    <span>arquivo1.txt</span>
+                                </div>
+                                <div class="tree-item">
+                                    <i class="fas fa-file"></i>
+                                    <span>arquivo2.txt</span>
+                                </div>
+                                <div class="tree-item">
+                                    <i class="fas fa-folder"></i>
+                                    <span>subpasta/</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visualizador de Código -->
+<!-- Visualizador de Código -->
+<div class="code-viewer">
+    <div class="viewer-header">
+        <h2><i class="fas fa-file-code"></i> Visualizador de Código</h2>
+        <div class="file-tabs">
+            <button class="tab-btn active" data-file="main">main.rs</button>
+            <button class="tab-btn" data-file="bundle">bundle.rs</button>
+            <button class="tab-btn" data-file="extract">extract.rs</button>
+            <button class="tab-btn" data-file="archive">archive.rs</button>
+            <button class="tab-btn" data-file="cargo">Cargo.toml</button>
+        </div>
+    </div>
+    
+    <div class="viewer-content">
+        <div class="code-container active" id="code-main">
+            <div class="code-header">
+                <span>src/main.rs</span>
+                <button class="copy-btn" data-target="main">
+                    <i class="fas fa-copy"></i> Copiar
+                </button>
+            </div>
+            <pre><code class="language-rust">
+use clap::{Parser, Subcommand, ValueEnum};
+use std::path::{Path, PathBuf};
+
+mod archive;
+mod bundle;
+mod extract;
+
+#[derive(Parser, Debug)]
+#[command(name = "file_bundler", version, about, long_about = None)]
+struct Cli {
+    #[command(subcommand)]
+    command: Commands,
+}
+
+#[derive(Subcommand, Debug)]
+enum Commands {
+    Bundle(BundleArgs),
+    Extract(ExtractArgs),
+}
+
+#[derive(Parser, Debug)]
+pub struct BundleArgs {
+    #[arg(short, long, required = true, num_args = 1..)]
+    input: Vec<PathBuf>,
+    
+    #[arg(short, long, required = true)]
+    output: PathBuf,
+    
+    #[arg(short, long, value_enum)]
+    compress: Option<CompressionAlgorithm>,
+}
+
+#[derive(Parser, Debug)]
+pub struct ExtractArgs {
+    #[arg(short, long, required = true)]
+    input: PathBuf,
+    
+    #[arg(short, long)]
+    output: Option<PathBuf>,
+}
+
+#[derive(ValueEnum, Clone, Debug, Copy)]
+pub enum CompressionAlgorithm {
+    Lz4,
+    Zstd,
+}
+
+fn main() {
+    let cli = Cli::parse();
+
+    match &cli.command {
+        Commands::Bundle(args) => {
+            if let Err(e) = bundle::run_bundle(args) {
+                eprintln!("Erro ao criar o bundle: {}", e);
+            } else {
+                println!("Bundle '{}' criado com sucesso!", args.output.display());
+            }
+        }
+        Commands::Extract(args) => {
+            let output_dir = args.output.as_deref().unwrap_or_else(|| Path::new("."));
+
+            if let Err(e) = extract::run_extract(args, output_dir) {
+                eprintln!("Erro ao extrair o bundle: {}", e);
+            } else {
+                println!("Extração concluída com sucesso!");
+            }
+        }
+    }
+}
+            </code></pre>
+        </div>
+        
+        <div class="code-container" id="code-bundle">
+            <div class="code-header">
+                <span>src/bundle.rs</span>
+                <button class="copy-btn" data-target="bundle">
+                    <i class="fas fa-copy"></i> Copiar
+                </button>
+            </div>
+            <pre><code class="language-rust">
+use crate::archive::{ArchiveManifest, CompressionMethod, FileEntry, ARCHIVE_VERSION};
+use crate::{BundleArgs, CompressionAlgorithm};
+use std::fs::File;
+use std::io::{self, BufWriter, Seek, Write};
+use walkdir::WalkDir;
+
+pub fn run_bundle(args: &BundleArgs) -> io::Result<()> {
+    let file = File::create(&args.output)?;
+    let mut writer = BufWriter::new(file);
+    let mut manifest_entries = Vec::<FileEntry>::new();
+
+    let compression_method = match args.compress {
+        Some(CompressionAlgorithm::Lz4) => CompressionMethod::Lz4,
+        Some(CompressionAlgorithm::Zstd) => CompressionMethod::Zstd,
+        None => CompressionMethod::None,
+    };
+
+    for input_path in &args.input {
+        for entry in WalkDir::new(input_path).into_iter().filter_map(|e| e.ok()) {
+            let path = entry.path();
+            let metadata = entry.metadata()?;
+            let path_str = path.to_str()?.to_string();
+            let offset = writer.stream_position()?;
+            let is_directory = metadata.is_dir();
+            let mut stored_size = 0;
+            let mut original_size = 0;
+
+            if metadata.is_file() {
+                original_size = metadata.len();
+                let mut input_file = File::open(path)?;
+
+                match compression_method {
+                    CompressionMethod::None => {
+                        stored_size = io::copy(&mut input_file, &mut writer)?;
+                    }
+                    CompressionMethod::Lz4 => {
+                        let mut encoder = lz4::EncoderBuilder::new()
+                            .level(4)
+                            .build(&mut writer)?;
+                        io::copy(&mut input_file, &mut encoder)?;
+                        let (_output, result) = encoder.finish();
+                        result?;
+                    }
+                    CompressionMethod::Zstd => {
+                        zstd::stream::copy_encode(&mut input_file, &mut writer, 0)?;
+                    }
+                }
+
+                let new_offset = writer.stream_position()?;
+                stored_size = new_offset - offset;
+            }
+
+            manifest_entries.push(FileEntry {
+                path: path_str,
+                size: stored_size,
+                original_size,
+                offset,
+                is_directory,
+                compression_method,
+            });
+        }
+    }
+
+    let manifest = ArchiveManifest {
+        entries: manifest_entries,
+        version: ARCHIVE_VERSION,
+    };
+
+    let manifest_bytes = bincode::serialize(&manifest)?;
+    let manifest_size = manifest_bytes.len() as u64;
+    writer.write_all(&manifest_bytes)?;
+    writer.write_all(&manifest_size.to_le_bytes())?;
+    writer.flush()?;
+    
+    Ok(())
+}
+            </code></pre>
+        </div>
+        
+        <div class="code-container" id="code-extract">
+            <div class="code-header">
+                <span>src/extract.rs</span>
+                <button class="copy-btn" data-target="extract">
+                    <i class="fas fa-copy"></i> Copiar
+                </button>
+            </div>
+            <pre><code class="language-rust">
+use crate::archive::{ArchiveManifest, CompressionMethod, ARCHIVE_VERSION};
+use crate::ExtractArgs;
+use std::fs::{self, File};
+use std::io::{self, BufReader, Read, Seek, SeekFrom};
+use std::path::Path;
+
+pub fn run_extract(args: &ExtractArgs, output_dir: &Path) -> io::Result<()> {
+    let file = File::open(&args.input)?;
+    let mut reader = BufReader::new(file);
+
+    reader.seek(SeekFrom::End(-8))?;
+    let mut size_bytes = [0u8; 8];
+    reader.read_exact(&mut size_bytes)?;
+    let manifest_size = u64::from_le_bytes(size_bytes);
+
+    reader.seek(SeekFrom::End(-((manifest_size + 8) as i64)))?;
+    let manifest_reader = reader.by_ref().take(manifest_size);
+    
+    let manifest: ArchiveManifest = bincode::deserialize_from(manifest_reader)?;
+
+    if manifest.version != ARCHIVE_VERSION {
+        return Err(io::Error::new(io::ErrorKind::InvalidData, "Versão incompatível"));
+    }
+
+    fs::create_dir_all(output_dir)?;
+
+    for entry in manifest.entries {
+        let dest_path = output_dir.join(&entry.path);
+
+        if entry.is_directory {
+            fs::create_dir_all(&dest_path)?;
+            continue;
+        }
+
+        if let Some(parent) = dest_path.parent() {
+            fs::create_dir_all(parent)?;
+        }
+
+        reader.seek(SeekFrom::Start(entry.offset))?;
+        let mut entry_reader = reader.by_ref().take(entry.size);
+        let mut dest_file = File::create(&dest_path)?;
+
+        match entry.compression_method {
+            CompressionMethod::None => {
+                io::copy(&mut entry_reader, &mut dest_file)?;
+            }
+            CompressionMethod::Lz4 => {
+                let mut decoder = lz4::Decoder::new(entry_reader)?;
+                io::copy(&mut decoder, &mut dest_file)?;
+            }
+            CompressionMethod::Zstd => {
+                zstd::stream::copy_decode(&mut entry_reader, &mut dest_file)?;
+            }
+        }
+    }
+
+    Ok(())
+}
+            </code></pre>
+        </div>
+        
+        <div class="code-container" id="code-archive">
+            <div class="code-header">
+                <span>src/archive.rs</span>
+                <button class="copy-btn" data-target="archive">
+                    <i class="fas fa-copy"></i> Copiar
+                </button>
+            </div>
+            <pre><code class="language-rust">
+use serde::{Serialize, Deserialize};
+
+pub const ARCHIVE_VERSION: u32 = 2;
+
+#[derive(Serialize, Deserialize, Debug, Clone, Copy, PartialEq)]
+pub enum CompressionMethod {
+    None,
+    Lz4,
+    Zstd,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct FileEntry {
+    pub path: String,
+    pub size: u64,
+    pub original_size: u64,
+    pub offset: u64,
+    pub is_directory: bool,
+    pub compression_method: CompressionMethod,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct ArchiveManifest {
+    pub entries: Vec<FileEntry>,
+    pub version: u32,
+}
+            </code></pre>
+        </div>
+        
+        <div class="code-container" id="code-cargo">
+            <div class="code-header">
+                <span>Cargo.toml</span>
+                <button class="copy-btn" data-target="cargo">
+                    <i class="fas fa-copy"></i> Copiar
+                </button>
+            </div>
+            <pre><code class="language-toml">
+[package]
+name = "gerenciador"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bincode = "1.3.3"
+clap = { version = "4.5.51", features = ["derive"] }
+lz4 = "1.28.1"
+serde = { version = "1.0.228", features = ["derive"] }
+walkdir = "2.5.0"
+zstd = "0.13.3"
+            </code></pre>
+        </div>
+    </div>
+</div>
+
+                <!-- Comandos e Execução -->
+                <div class="commands-section">
+    <h2><i class="fas fa-terminal"></i> Comandos do Projeto</h2>
+    
+    <div class="commands-categories">
+        <!-- Categoria: Build -->
+        <div class="category-card">
+            <div class="category-header">
+                <i class="fas fa-hammer"></i>
+                <h3>Build Rust</h3>
+            </div>
+            <div class="command-box">
+                <code>cargo build</code>
+                <button class="copy-cmd" data-cmd="cargo build">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Categoria: Run -->
+        <div class="category-card">
+            <div class="category-header">
+                <i class="fas fa-play"></i>
+                <h3>Run Rust</h3>
+            </div>
+            <div class="command-box">
+                <code>cargo run</code>
+                <button class="copy-cmd" data-cmd="cargo run">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Categoria: Bundle -->
+        <div class="category-card">
+            <div class="category-header">
+                <i class="fas fa-box"></i>
+                <h3>Criar Bundle</h3>
+            </div>
+            <div class="command-box">
+                <code>cargo run -- bundle --input teste_data --output meu_pacote.bundle</code>
+                <button class="copy-cmd" data-cmd="cargo run -- bundle --input teste_data --output meu_pacote.bundle">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Categoria: Extract -->
+        <div class="category-card">
+            <div class="category-header">
+                <i class="fas fa-archive"></i>
+                <h3>Extrair Bundle</h3>
+            </div>
+            <div class="command-box">
+                <code>cargo run -- extract --input teste_data.bundle --output ./meu_diretorio</code>
+                <button class="copy-cmd" data-cmd="cargo run -- extract --input teste_data.bundle --output ./meu_diretorio">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Algoritmos de Compressão -->
+    <div class="compression-section">
+        <h3><i class="fas fa-compress-arrows-alt"></i> Algoritmos de Compressão</h3>
+        
+        <div class="compression-grid">
+            <!-- LZ4 -->
+            <div class="algorithm-card">
+                <div class="algorithm-header lz4">
+                    <h4>LZ4</h4>
+                    <span class="algorithm-tag">Rápido</span>
+                </div>
+                <div class="algorithm-commands">
+                    <div class="command-item">
+                        <span class="command-label">Comprimir:</span>
+                        <div class="command-box small">
+                            <code>cargo run -- bundle -i teste_data -o pacote_lz4.bundle -c lz4</code>
+                            <button class="copy-cmd" data-cmd="cargo run -- bundle -i teste_data -o pacote_lz4.bundle -c lz4">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="command-item">
+                        <span class="command-label">Descomprimir:</span>
+                        <div class="command-box small">
+                            <code>cargo run -- extract -i pacote_lz4.bundle -o saida_lz4</code>
+                            <button class="copy-cmd" data-cmd="cargo run -- extract -i pacote_lz4.bundle -o saida_lz4">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ZSTD -->
+            <div class="algorithm-card">
+                <div class="algorithm-header zstd">
+                    <h4>ZStandard</h4>
+                    <span class="algorithm-tag">Balanceado</span>
+                </div>
+                <div class="algorithm-commands">
+                    <div class="command-item">
+                        <span class="command-label">Comprimir:</span>
+                        <div class="command-box small">
+                            <code>cargo run -- bundle -i teste_data -o pacote_zstd.bundle -c zstd</code>
+                            <button class="copy-cmd" data-cmd="cargo run -- bundle -i teste_data -o pacote_zstd.bundle -c zstd">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="command-item">
+                        <span class="command-label">Descomprimir:</span>
+                        <div class="command-box small">
+                            <code>cargo run -- extract -i pacote_zstd.bundle -o saida_zstd</code>
+                            <button class="copy-cmd" data-cmd="cargo run -- extract -i pacote_zstd.bundle -o saida_zstd">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+   
+            
+          <!-- Substitua a seção "Visualizador de Construtores" inteira por: -->
+
+<!-- Construtores e Implementação -->
+<div class="constructors-section">
+    <h2><i class="fas fa-cogs"></i> Construtores e Implementação</h2>
+    <p>Documentação detalhada das estruturas e funções principais do projeto</p>
+    
+    <!-- Navegação por arquivo -->
+    <div class="constructors-nav">
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-target="archive">
+                <i class="fas fa-archive"></i> archive.rs
+            </button>
+            <button class="nav-tab" data-target="bundle">
+                <i class="fas fa-box"></i> bundle.rs
+            </button>
+            <button class="nav-tab" data-target="extract">
+                <i class="fas fa-archive"></i> extract.rs
+            </button>
+            <button class="nav-tab" data-target="main">
+                <i class="fas fa-play"></i> main.rs
+            </button>
+        </div>
+    </div>
+
+    <!-- Conteúdo dos Construtores -->
+    <div class="constructors-content">
+        
+        <!-- ARCHIVE.RS -->
+        <div class="constructor-module active" id="module-archive">
+            <div class="module-header">
+                <h3><i class="fas fa-archive"></i> archive.rs - Estruturas de Dados do Bundle</h3>
+                <p class="module-desc">Define a estrutura do índice (manifesto) e tipos de compressão</p>
+            </div>
+            
+            <div class="constructor-info">
+                <h4><i class="fas fa-info-circle"></i> O que este módulo faz:</h4>
+                <ul class="module-features">
+                    <li><strong>CompressionMethod</strong> - Enum que define os algoritmos de compressão suportados (None, Lz4, Zstd)</li>
+                    <li><strong>FileEntry</strong> - Struct que representa cada arquivo/diretório no bundle com metadados</li>
+                    <li><strong>ArchiveManifest</strong> - Struct principal que contém todas as entradas e versão</li>
+                    <li><strong>ARCHIVE_VERSION</strong> - Constante para controle de compatibilidade</li>
+                </ul>
+            </div>
+            
+            <div class="constructor-code">
+                <div class="code-header">
+                    <span><i class="fas fa-file-code"></i> src/archive.rs</span>
+                    <button class="copy-btn" data-copy="archive">
+                        <i class="fas fa-copy"></i> Copiar Código
+                    </button>
+                </div>
+                <pre><code class="language-rust">
+use serde::{Serialize, Deserialize};
+
+pub const ARCHIVE_VERSION: u32 = 2;
+
+#[derive(Serialize, Deserialize, Debug, Clone, Copy, PartialEq)]
+pub enum CompressionMethod {
+    None,
+    Lz4,
+    Zstd,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct FileEntry {
+    pub path: String,
+    pub size: u64,
+    pub original_size: u64,
+    pub offset: u64,
+    pub is_directory: bool,
+    pub compression_method: CompressionMethod,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct ArchiveManifest {
+    pub entries: Vec<FileEntry>,
+    pub version: u32,
+}
+                </code></pre>
+            </div>
+        </div>
+
+        <!-- BUNDLE.RS -->
+        <div class="constructor-module" id="module-bundle">
+            <div class="module-header">
+                <h3><i class="fas fa-box"></i> bundle.rs - Criador de Bundles</h3>
+                <p class="module-desc">Função principal para empacotar arquivos com compressão opcional</p>
+            </div>
+            
+            <div class="constructor-info">
+                <h4><i class="fas fa-info-circle"></i> Funcionamento do run_bundle:</h4>
+                <ul class="module-features">
+                    <li><strong>Entrada</strong>: Recebe caminhos de arquivos/diretórios e algoritmo de compressão</li>
+                    <li><strong>Processamento</strong>: Navega recursivamente pelos diretórios usando WalkDir</li>
+                    <li><strong>Compressão</strong>: Aplica LZ4 ou ZStandard em tempo real durante a escrita</li>
+                    <li><strong>Índice</strong>: Cria e serializa o ArchiveManifest com todas as entradas</li>
+                    <li><strong>Saída</strong>: Gera arquivo .bundle com dados + índice no final</li>
+                </ul>
+                
+                <div class="constructor-flow">
+                    <h5><i class="fas fa-project-diagram"></i> Fluxo de Execução:</h5>
+                    <div class="flow-steps">
+                        <div class="flow-step">1. Cria arquivo de saída</div>
+                        <div class="flow-step">2. Define método de compressão</div>
+                        <div class="flow-step">3. Processa cada arquivo</div>
+                        <div class="flow-step">4. Aplica compressão (se habilitado)</div>
+                        <div class="flow-step">5. Coleta metadados</div>
+                        <div class="flow-step">6. Serializa e escreve índice</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="constructor-code">
+                <div class="code-header">
+                    <span><i class="fas fa-file-code"></i> src/bundle.rs</span>
+                    <button class="copy-btn" data-copy="bundle">
+                        <i class="fas fa-copy"></i> Copiar Código
+                    </button>
+                </div>
+                <pre><code class="language-rust">
+use crate::archive::{ArchiveManifest, CompressionMethod, FileEntry, ARCHIVE_VERSION};
+use crate::{BundleArgs, CompressionAlgorithm};
+use std::fs::File;
+use std::io::{self, BufWriter, Seek, Write};
+use walkdir::WalkDir;
+
+pub fn run_bundle(args: &BundleArgs) -> io::Result<()> {
+    let file = File::create(&args.output)?;
+    let mut writer = BufWriter::new(file);
+    let mut manifest_entries = Vec::<FileEntry>::new();
+
+    let compression_method = match args.compress {
+        Some(CompressionAlgorithm::Lz4) => CompressionMethod::Lz4,
+        Some(CompressionAlgorithm::Zstd) => CompressionMethod::Zstd,
+        None => CompressionMethod::None,
+    };
+
+    for input_path in &args.input {
+        for entry in WalkDir::new(input_path).into_iter().filter_map(|e| e.ok()) {
+            let path = entry.path();
+            let metadata = entry.metadata()?;
+            let path_str = path.to_str()?.to_string();
+            let offset = writer.stream_position()?;
+            let is_directory = metadata.is_dir();
+            let mut stored_size = 0;
+            let mut original_size = 0;
+
+            if metadata.is_file() {
+                original_size = metadata.len();
+                let mut input_file = File::open(path)?;
+
+                match compression_method {
+                    CompressionMethod::None => {
+                        stored_size = io::copy(&mut input_file, &mut writer)?;
+                    }
+                    CompressionMethod::Lz4 => {
+                        let mut encoder = lz4::EncoderBuilder::new()
+                            .level(4)
+                            .build(&mut writer)?;
+                        io::copy(&mut input_file, &mut encoder)?;
+                        let (_output, result) = encoder.finish();
+                        result?;
+                    }
+                    CompressionMethod::Zstd => {
+                        zstd::stream::copy_encode(&mut input_file, &mut writer, 0)?;
+                    }
+                }
+
+                let new_offset = writer.stream_position()?;
+                stored_size = new_offset - offset;
+            }
+
+            manifest_entries.push(FileEntry {
+                path: path_str,
+                size: stored_size,
+                original_size,
+                offset,
+                is_directory,
+                compression_method,
+            });
+        }
+    }
+
+    let manifest = ArchiveManifest {
+        entries: manifest_entries,
+        version: ARCHIVE_VERSION,
+    };
+
+    let manifest_bytes = bincode::serialize(&manifest)?;
+    let manifest_size = manifest_bytes.len() as u64;
+    writer.write_all(&manifest_bytes)?;
+    writer.write_all(&manifest_size.to_le_bytes())?;
+    writer.flush()?;
+    
+    Ok(())
+}
+                </code></pre>
+            </div>
+        </div>
+
+        <!-- EXTRACT.RS -->
+        <div class="constructor-module" id="module-extract">
+            <div class="module-header">
+                <h3><i class="fas fa-archive"></i> extract.rs - Extrator de Bundles</h3>
+                <p class="module-desc">Função para extrair arquivos do formato .bundle com descompressão automática</p>
+            </div>
+            
+            <div class="constructor-info">
+                <h4><i class="fas fa-info-circle"></i> Funcionamento do run_extract:</h4>
+                <ul class="module-features">
+                    <li><strong>Leitura do Footer</strong>: Lê os últimos 8 bytes para descobrir tamanho do índice</li>
+                    <li><strong>Desserialização</strong>: Carrega o ArchiveManifest do arquivo bundle</li>
+                    <li><strong>Verificação</strong>: Checa compatibilidade de versão</li>
+                    <li><strong>Extracção</strong>: Para cada entrada, lê dados na posição correta e descomprime</li>
+                    <li><strong>Reconstrução</strong>: Recria estrutura de diretórios e arquivos originais</li>
+                </ul>
+                
+                <div class="constructor-details">
+                    <h5><i class="fas fa-code"></i> Pontos-chave:</h5>
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <strong>Seek</strong>: Navegação precisa para posições dos arquivos
+                        </div>
+                        <div class="detail-item">
+                            <strong>Take</strong>: Leitura limitada ao tamanho exato de cada arquivo
+                        </div>
+                        <div class="detail-item">
+                            <strong>Decoder</strong>: Descompressão automática baseada no método salvo
+                        </div>
+                        <div class="detail-item">
+                            <strong>Create Dir All</strong>: Reconstrução hierárquica de diretórios
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="constructor-code">
+                <div class="code-header">
+                    <span><i class="fas fa-file-code"></i> src/extract.rs</span>
+                    <button class="copy-btn" data-copy="extract">
+                        <i class="fas fa-copy"></i> Copiar Código
+                    </button>
+                </div>
+                <pre><code class="language-rust">
+use crate::archive::{ArchiveManifest, CompressionMethod, ARCHIVE_VERSION};
+use crate::ExtractArgs;
+use std::fs::{self, File};
+use std::io::{self, BufReader, Read, Seek, SeekFrom};
+use std::path::Path;
+
+pub fn run_extract(args: &ExtractArgs, output_dir: &Path) -> io::Result<()> {
+    let file = File::open(&args.input)?;
+    let mut reader = BufReader::new(file);
+
+    reader.seek(SeekFrom::End(-8))?;
+    let mut size_bytes = [0u8; 8];
+    reader.read_exact(&mut size_bytes)?;
+    let manifest_size = u64::from_le_bytes(size_bytes);
+
+    reader.seek(SeekFrom::End(-((manifest_size + 8) as i64)))?;
+    let manifest_reader = reader.by_ref().take(manifest_size);
+    
+    let manifest: ArchiveManifest = bincode::deserialize_from(manifest_reader)?;
+
+    if manifest.version != ARCHIVE_VERSION {
+        return Err(io::Error::new(io::ErrorKind::InvalidData, "Versão incompatível"));
+    }
+
+    fs::create_dir_all(output_dir)?;
+
+    for entry in manifest.entries {
+        let dest_path = output_dir.join(&entry.path);
+
+        if entry.is_directory {
+            fs::create_dir_all(&dest_path)?;
+            continue;
+        }
+
+        if let Some(parent) = dest_path.parent() {
+            fs::create_dir_all(parent)?;
+        }
+
+        reader.seek(SeekFrom::Start(entry.offset))?;
+        let mut entry_reader = reader.by_ref().take(entry.size);
+        let mut dest_file = File::create(&dest_path)?;
+
+        match entry.compression_method {
+            CompressionMethod::None => {
+                io::copy(&mut entry_reader, &mut dest_file)?;
+            }
+            CompressionMethod::Lz4 => {
+                let mut decoder = lz4::Decoder::new(entry_reader)?;
+                io::copy(&mut decoder, &mut dest_file)?;
+            }
+            CompressionMethod::Zstd => {
+                zstd::stream::copy_decode(&mut entry_reader, &mut dest_file)?;
+            }
+        }
+    }
+
+    Ok(())
+}
+                </code></pre>
+            </div>
+        </div>
+
+        <!-- MAIN.RS -->
+        <div class="constructor-module" id="module-main">
+            <div class="module-header">
+                <h3><i class="fas fa-play"></i> main.rs - Ponto de Entrada e CLI</h3>
+                <p class="module-desc">Configuração da interface de linha de comando e orquestração principal</p>
+            </div>
+            
+            <div class="constructor-info">
+                <h4><i class="fas fa-info-circle"></i> Estrutura do CLI:</h4>
+                <ul class="module-features">
+                    <li><strong>Clap Framework</strong>: Parsing automático de argumentos com validação</li>
+                    <li><strong>Subcomandos</strong>: bundle e extract com parâmetros específicos</li>
+                    <li><strong>ValueEnum</strong>: Restrição de valores para algoritmos de compressão</li>
+                    <li><strong>Tratamento de Erros</strong>: Saídas amigáveis para o usuário</li>
+                    <li><strong>Orquestração</strong>: Chama as funções apropriadas baseadas no comando</li>
+                </ul>
+                
+                <div class="constructor-structs">
+                    <h5><i class="fas fa-cube"></i> Estruturas Principais:</h5>
+                    <div class="structs-grid">
+                        <div class="struct-item">
+                            <strong>Cli</strong>: Contém o comando principal
+                        </div>
+                        <div class="struct-item">
+                            <strong>Commands</strong>: Enum com subcomandos disponíveis
+                        </div>
+                        <div class="struct-item">
+                            <strong>BundleArgs</strong>: Argumentos para empacotamento
+                        </div>
+                        <div class="struct-item">
+                            <strong>ExtractArgs</strong>: Argumentos para extração
+                        </div>
+                        <div class="struct-item">
+                            <strong>CompressionAlgorithm</strong>: Enum de algoritmos suportados
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="constructor-code">
+                <div class="code-header">
+                    <span><i class="fas fa-file-code"></i> src/main.rs</span>
+                    <button class="copy-btn" data-copy="main">
+                        <i class="fas fa-copy"></i> Copiar Código
+                    </button>
+                </div>
+                <pre><code class="language-rust">
+use clap::{Parser, Subcommand, ValueEnum};
+use std::path::{Path, PathBuf};
+
+mod archive;
+mod bundle;
+mod extract;
+
+#[derive(Parser, Debug)]
+#[command(name = "file_bundler", version, about, long_about = None)]
+struct Cli {
+    #[command(subcommand)]
+    command: Commands,
+}
+
+#[derive(Subcommand, Debug)]
+enum Commands {
+    Bundle(BundleArgs),
+    Extract(ExtractArgs),
+}
+
+#[derive(Parser, Debug)]
+pub struct BundleArgs {
+    #[arg(short, long, required = true, num_args = 1..)]
+    input: Vec<PathBuf>,
+    
+    #[arg(short, long, required = true)]
+    output: PathBuf,
+    
+    #[arg(short, long, value_enum)]
+    compress: Option<CompressionAlgorithm>,
+}
+
+#[derive(Parser, Debug)]
+pub struct ExtractArgs {
+    #[arg(short, long, required = true)]
+    input: PathBuf,
+    
+    #[arg(short, long)]
+    output: Option<PathBuf>,
+}
+
+#[derive(ValueEnum, Clone, Debug, Copy)]
+pub enum CompressionAlgorithm {
+    Lz4,
+    Zstd,
+}
+
+fn main() {
+    let cli = Cli::parse();
+
+    match &cli.command {
+        Commands::Bundle(args) => {
+            if let Err(e) = bundle::run_bundle(args) {
+                eprintln!("Erro ao criar o bundle: {}", e);
+            } else {
+                println!("Bundle '{}' criado com sucesso!", args.output.display());
+            }
+        }
+        Commands::Extract(args) => {
+            let output_dir = args.output.as_deref().unwrap_or_else(|| Path::new("."));
+
+            if let Err(e) = extract::run_extract(args, output_dir) {
+                eprintln!("Erro ao extrair o bundle: {}", e);
+            } else {
+                println!("Extração concluída com sucesso!");
+            }
+        }
+    }
+}
+                </code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!-- Links de Ação -->
+            <div class="codigo-footer">
+                <div class="action-links">
+                    <a href="#" class="action-link" id="githubBtn" target="_blank">
+                        <i class="fab fa-github"></i> Ver no GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+  <footer class="main-footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <div class="logo-icon">🦀</div>
+            <h3>File Bundler</h3>
+            <p>Universidade de Brasília</p>
+            <p>Departamento de Ciência da Computação</p>
+          </div>
+          <div class="footer-links">
+            <h4>Documentação</h4>
+            <ul>
+              <li>
+                <a href="projeto.html"
+                  ><i class="fas fa-book"></i> Especificações</a
+                >
+              </li>
+              <li>
+                <a href="rust.html"><i class="fas fa-code"></i> Rust</a>
+              </li>
+              <li>
+                <a href="codigo.html"><i class="fas fa-terminal"></i> Código</a>
+              </li>
+              <li>
+                <a href="slides.html"
+                  ><i class="fas fa-presentation-screen"></i> Slides</a
+                >
+              </li>
+              <li>
+                <a href="video.html"><i class="fas fa-video"></i> Vídeo</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2024 File Bundler - Implementação em Rust</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/rust.min.js"></script>
+    <script src="assets/js/codigo.js"></script>
+</body>
+</html>
